@@ -1,0 +1,44 @@
+Start up guide for hyperledger composer.
+
+
+
+HyperLedger fabric using HyperLedger-composer and playground:
+
+Step 1: we need to setup the developemnent requirements and install all the prerequisites.
+step 2: docker containers need to be up.
+step 3: we need to start the fabric using ./startFabrics.sh and followed by ./createPeerAdminCard.sh
+
+
+for local testing and setup we can make use of YO package provided by npm :
+    - yo hyperledger-composer
+    - This command is followed by no of questions and select each answer carefully.    
+
+
+
+
+We need to create a .bna (business network archive) file which is the combination of 4 sections:
+ - model.cto (modeling the structure of the project requirements)
+ - query.qry(contains query for the ledger)
+ - script.js (contains the logic)
+ - accesscontrol.acs(acess controls details)
+
+ - composer archive create -t dir -n .
+
+
+After creating the .bna file we need to deploy it to the fabric;
+    Install composer runtime:
+        - composer network install --card PeerAdmin@hlfv1 --archiveFile block-track@0.0.1.bna
+    Deploy the business network:
+        - sudo composer network start --networkName block-track --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+    Import the network administrator identity as a usable business network card
+        - composer card import --file networkadmin.card
+    Checking the card:
+        - composer network ping --card admin@block-track
+
+    Start the RESTful API:
+        - composer-rest-server
+        Followed by simple steps and you can have access to your rest api's
+    
+    Start building the front end:
+        -  
+

@@ -1,3 +1,3 @@
-# block-track
+# Hyperledger-composer
 
-This is simply a prac of hyperledger
+This is a simple project that we are going to build using hyperledger composer.

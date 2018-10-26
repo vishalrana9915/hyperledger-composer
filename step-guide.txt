@@ -1,5 +1,7 @@
 Start up guide for hyperledger composer.
 
+You can access the playground by :
+ - http://composer-playground.mybluemix.net/editor
 
 
 HyperLedger fabric using HyperLedger-composer and playground:

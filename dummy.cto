@@ -1,44 +1,44 @@
-namespace org.hyperledger_composer.scmss
+// namespace org.hyperledger_composer.scmss
 
 
-/**
- * An enumerated type
- */
-enum gender{
-  o Male
-  o Female
-}
+// /**
+//  * An enumerated type
+//  */
+// enum gender{
+//   o Male
+//   o Female
+// }
 
-abstract concept address {
-  o String pincode
-  o String address1
-  o String address2
-  o String city
-}
+// abstract concept address {
+//   o String pincode
+//   o String address1
+//   o String address2
+//   o String city
+// }
 
-participant Users identified by uniqueId  {
-  o String uniqueId
-  o String name
-  o String age
-  o address address
-  o gender sex default = "Male"
-}
+// participant Users identified by uniqueId  {
+//   o String uniqueId
+//   o String name
+//   o String age
+//   o address address
+//   o gender sex default = "Male"
+// }
 
-asset item identified by itemId {
-  o String itemId
-  o String itemName
-  o String createdAt
-  --> Users createdBy
-  --> Users currentOwner
-  --> Users previousOwner
-}
+// asset item identified by itemId {
+//   o String itemId
+//   o String itemName
+//   o String createdAt
+//   --> Users createdBy
+//   --> Users currentOwner
+//   --> Users previousOwner
+// }
 
-participant Manager identified by email {
-  o String email
-  o Integer total_experience
-  o address _address
-  o gender sex
-}
+// participant Manager identified by email {
+//   o String email
+//   o Integer total_experience
+//   o address _address
+//   o gender sex
+// }
 
 
 

@@ -29,13 +29,13 @@ We need to create a .bna (business network archive) file which is the combinatio
 
 After creating the .bna file we need to deploy it to the fabric;
     Install composer runtime:
-        - composer network install --card PeerAdmin@hlfv1 --archiveFile block-track@0.0.1.bna
+        - sudo composer network install --card PeerAdmin@hlfv1 --archiveFile block-track@0.0.1.bna
     Deploy the business network:
         - sudo composer network start --networkName block-track --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
     Import the network administrator identity as a usable business network card
-        - composer card import --file networkadmin.card
+        - sudo composer card import --file networkadmin.card
     Checking the card:
-        - composer network ping --card admin@block-track
+        - sudo composer network ping --card admin@block-track
 
     Start the RESTful API:
         - composer-rest-server

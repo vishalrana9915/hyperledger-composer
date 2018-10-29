@@ -12,31 +12,47 @@
  * limitations under the License.
  */
 
-rule Default {
- description: "Allow all participants access to all resources"
- participant: "ANY"
- operation: ALL
- resource: "org.hyperledger_composer.scms.*"
- action: ALLOW
+/**
+ * Sample access control list.
+ */
+
+
+
+rule updatePermissions{
+	description: "Only the user can update his details"
+  	participant(m): "org.hyperledger.composer.system.Participant"
+  	operation: UPDATE
+    resource(l): "org.hyperledger.composer.system.Participant"
+  	condition: (m.email == l.getIdentifier())
+  	action: ALLOW
+} 
+
+rule OnlyOwnerCanDeleteItem{
+	description: "Only the creator can delete the item that he has created"
+  	participant(r): "org.hyperledger.composer.system.Participant"
+  	operation: DELETE,UPDATE
+    resource(v): "org.acme.shipping.perishables.Item"
+  	condition: (v.currentOwner.getIdentifier() == r.getIdentifier())
+  	action: ALLOW
+} 
+
+/**
+ * Sample access control list.
+ */
+
+
+rule canViewOthers{
+	description: "Giving read only permissions to participants"
+  	participant: "org.hyperledger.composer.system.Participant"
+  	operation: READ
+    resource: "**"
+  	action: ALLOW
 }
-rule SystemACL {
- description: "System ACL to permit all access"
- participant: "org.hyperledger.composer.system.Participant"
- operation: ALL
- resource: "org.hyperledger.composer.system.**"
- action: ALLOW
-}
-rule NetworkAdminUser {
- description: "Grant business network administrators full access to user resources"
- participant: "org.hyperledger.composer.system.NetworkAdmin"
- operation: ALL
- resource: "**"
- action: ALLOW
-}
-rule NetworkAdminSystem {
- description: "Grant business network administrators full access to system resources"
- participant: "org.hyperledger.composer.system.NetworkAdmin"
- operation: ALL
- resource: "org.hyperledger.composer.system.**"
- action: ALLOW
+
+rule NetworkAdminAcl{
+	description: "Giving read only permissions to participants"
+  	participant: "org.hyperledger.composer.system.NetworkAdmin"
+  	operation: ALL
+    resource: "**"
+  	action: ALLOW
 }
